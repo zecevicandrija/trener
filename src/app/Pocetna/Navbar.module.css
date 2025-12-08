@@ -1,0 +1,238 @@
+/* --- GLOBALNA DEFINICIJA ZA OVU KOMPONENTU --- */
+/* Definišemo varijable ovde tako da važe i za Navbar i za MobileMenu */
+.navbar, .mobileMenu {
+  --color-neon: #39FF14;
+  --font-titles: var(--font-teko), sans-serif; /* Mora odgovarati onome u layout.js */
+  --font-body: var(--font-montserrat), sans-serif;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1.5rem 0;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scrolled {
+  padding: 1rem 0;
+  background: rgba(5, 5, 5, 0.95);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(57, 255, 20, 0.15);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+}
+
+.container {
+  max-width: 1440px;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* --- LOGO --- */
+.logo {
+  font-family: var(--font-titles);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 1005; 
+}
+
+.logoHighlight {
+  color: var(--color-neon);
+  margin-left: 2px;
+}
+
+/* --- DESKTOP LINKOVI --- */
+.desktopLinks {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+
+.navLink {
+  position: relative;
+  color: #ccc;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 5px 0;
+  overflow: hidden;
+  transition: color 0.3s;
+}
+
+.navLink:hover {
+  color: #fff;
+}
+
+.linkUnderline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-neon);
+  transform: translateX(-101%);
+  transition: transform 0.3s ease;
+}
+
+.navLink:hover .linkUnderline {
+  transform: translateX(0);
+}
+
+/* --- CTA DUGME --- */
+.navButton {
+  background: transparent;
+  color: var(--color-neon);
+  border: 1px solid var(--color-neon);
+  padding: 0.6rem 1.5rem;
+  font-family: var(--font-titles);
+  font-size: 1.4rem;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+  clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+  transition: all 0.3s;
+}
+
+.navButton:hover {
+  background: var(--color-neon);
+  color: #000;
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
+}
+
+/* --- MOBILE TOGGLE (X dugme) --- */
+.mobileToggle {
+  display: none;
+  cursor: pointer;
+  z-index: 1005; 
+  padding: 10px; 
+  margin-right: -10px;
+}
+
+/* --- MOBILE MENU --- */
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh; 
+  background: #050505; /* Solidna crna pozadina da se sve vidi */
+  z-index: 1002;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  overflow: hidden;
+  /* Dodajemo varijable ponovo ovde da budemo sigurni */
+  --font-titles: var(--font-teko), sans-serif;
+  --font-body: var(--font-montserrat), sans-serif;
+}
+
+.noiseOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.05;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.menuBackgroundDeco {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(57, 255, 20, 0.05));
+  transform: skewX(-15deg);
+  border-left: 1px solid rgba(57, 255, 20, 0.1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mobileLinksContainer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+.mobileLink {
+  /* Eksplicitno dodeljujemo font */
+  font-family: var(--font-titles) !important; 
+  font-size: clamp(2.5rem, 8vw, 4rem); 
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  line-height: 0.9;
+  display: flex;
+  align-items: flex-start;
+  transition: all 0.3s;
+}
+
+.mobileLinkNumber {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-neon);
+  margin-right: 15px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.mobileLink:active, .mobileLink:hover {
+  color: var(--color-neon);
+  transform: translateX(10px);
+}
+
+.mobileCta {
+  margin-top: 2rem;
+  background: var(--color-neon);
+  border: none;
+  padding: 1rem;
+  width: 100%;
+  font-family: var(--font-titles) !important;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 95% 100%, 0 100%);
+  cursor: pointer;
+  color: #000;
+  font-weight: 700;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .desktopLinks, .ctaContainer {
+    display: none;
+  }
+  .mobileToggle {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo { font-size: 1.8rem; }
+  .mobileLink { gap: 0.5rem; }
+}

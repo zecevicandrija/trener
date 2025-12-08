@@ -1,0 +1,226 @@
+.statsSection {
+  /* GLOBALNE VARIJABLE (iste kao u Hero) */
+  --c-neon: #39FF14;
+  --c-bg: #050505;
+  --c-card: #0a0a0a;
+  --f-title: var(--font-teko), sans-serif;
+  --f-body: var(--font-montserrat), sans-serif;
+
+  position: relative;
+  padding: 8rem 0;
+  background-color: var(--c-bg);
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- POZADINSKI ELEMENTI --- */
+.bgText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--f-title);
+  font-size: 25vw; /* Ogromno */
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.02); /* Skoro nevidljivo */
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+  text-transform: uppercase;
+  line-height: 0.8;
+}
+
+.gridBackground {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(57, 255, 20, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57, 255, 20, 0.05) 1px, transparent 1px);
+  background-size: 100px 100px;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+/* --- GLAVNI KONTEJNER --- */
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.subHeader {
+    color: var(--c-neon);
+    font-family: var(--f-body);
+    letter-spacing: 4px;
+    font-size: 1rem;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.line {
+    flex-grow: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--c-neon), transparent);
+}
+
+/* --- GRID KARTICA --- */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(10, 10, 10, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+.statCard {
+  position: relative;
+  padding: 3rem 2rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: background 0.3s ease;
+  overflow: hidden; /* Zbog scanner efekta */
+}
+
+.statCard:last-child {
+  border-right: none;
+}
+
+/* Hover efekat: blago posvetljavanje pozadine */
+.statCard:hover {
+  background: rgba(57, 255, 20, 0.03);
+}
+
+/* --- SADRŽAJ KARTICE --- */
+.iconWrapper {
+  color: #fff;
+  opacity: 0.5;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s;
+}
+
+.statCard:hover .iconWrapper {
+    color: var(--c-neon);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.numberWrapper {
+    display: flex;
+    align-items: baseline;
+}
+
+.statNumber {
+  font-family: var(--f-title);
+  font-size: 5rem;
+  line-height: 0.9;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.label {
+  font-family: var(--f-title);
+  font-size: 1.5rem;
+  color: var(--c-neon);
+  margin: 1rem 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.desc {
+  font-family: var(--f-body);
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* --- UKRASNI DETALJI (TECH CORNERS) --- */
+.cornerTL, .cornerBR {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    transition: all 0.3s;
+    opacity: 0;
+}
+
+.cornerTL {
+    top: 0;
+    left: 0;
+    border-top: 2px solid var(--c-neon);
+    border-left: 2px solid var(--c-neon);
+}
+
+.cornerBR {
+    bottom: 0;
+    right: 0;
+    border-bottom: 2px solid var(--c-neon);
+    border-right: 2px solid var(--c-neon);
+}
+
+.statCard:hover .cornerTL,
+.statCard:hover .cornerBR {
+    width: 20px;
+    height: 20px;
+    opacity: 1;
+}
+
+/* --- SCANNER ANIMACIJA NA HOVER --- */
+.scannerLine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(57, 255, 20, 0.1), transparent);
+    transform: translateY(-100%);
+    transition: transform 0.6s ease;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.statCard:hover .scannerLine {
+    transform: translateY(100%);
+    transition: transform 0.6s ease;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+    .statsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .statCard:nth-child(2) {
+        border-right: none;
+    }
+    .statCard {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .statCard:nth-last-child(-n+2) {
+        border-bottom: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .statsGrid {
+        grid-template-columns: 1fr;
+    }
+    .statCard {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 2rem;
+    }
+    .statNumber {
+        font-size: 4rem;
+    }
+}
