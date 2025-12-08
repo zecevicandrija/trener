@@ -349,4 +349,9 @@
     .subtitle {
         font-size: 0.7rem;
     }
+    .btnContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

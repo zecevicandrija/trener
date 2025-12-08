@@ -2,9 +2,8 @@
 import { useRef, useState } from 'react';
 import styles from './Programi.module.css';
 import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
-import { Check, Flame, Zap, Crown, ArrowRight } from 'lucide-react';
+import { Check, ArrowRight } from 'lucide-react';
 
-// --- KOMPONENTA JEDNE KARTICE (Sa Spotlight efektom) ---
 const ProgramCard = ({ title, subtitle, price, features, recommended, delay }) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -20,11 +19,11 @@ const ProgramCard = ({ title, subtitle, price, features, recommended, delay }) =
       className={`${styles.card} ${recommended ? styles.recommendedCard : ''}`}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: delay }}
       onMouseMove={handleMouseMove}
     >
-      {/* Spotlight Gradient koji prati miša */}
+      {/* Spotlight Gradient - Desktop Only Effect via CSS handling */}
       <motion.div
         className={styles.spotlight}
         style={{
@@ -38,7 +37,6 @@ const ProgramCard = ({ title, subtitle, price, features, recommended, delay }) =
         }}
       />
       
-      {/* Border Spotlight */}
       <motion.div
         className={styles.spotlightBorder}
         style={{
@@ -79,9 +77,8 @@ const ProgramCard = ({ title, subtitle, price, features, recommended, delay }) =
           <ArrowRight className={styles.btnIcon} size={20} />
         </button>
 
-        {/* Dekorativni tech detalji */}
         <div className={styles.techLines}></div>
-        <div className={styles.techNumber}>0{delay * 10}</div>
+        <div className={styles.techNumber}>0{Math.floor(delay * 10)}</div>
       </div>
     </motion.div>
   );
@@ -115,7 +112,7 @@ export default function Programi() {
         "Korekcija Forme (Video)",
         "Suplementacija Vodič"
       ],
-      recommended: true, // Ovo je onaj koji "prodaješ"
+      recommended: true, 
       delay: 0.2
     },
     {
@@ -136,8 +133,12 @@ export default function Programi() {
 
   return (
     <section className={styles.section} id="program">
-      {/* Background Grid */}
+      {/* Dynamic Background */}
       <div className={styles.gridBg}></div>
+      <div className={styles.motionBgContainer}>
+         <div className={styles.blob1}></div>
+         <div className={styles.blob2}></div>
+      </div>
       
       <div className={styles.container}>
         <div className={styles.header}>
@@ -158,12 +159,17 @@ export default function Programi() {
             TVOJE ORUŽJE <br />
             <span className={styles.highlight}>ZA USPEH</span>
           </motion.h2>
+          
+          {/* Mobile Hint text */}
+          <p className={styles.mobileSwipeHint}>&larr; PREVUCI ZA VIŠE &rarr;</p>
         </div>
 
         <div className={styles.cardsGrid}>
           {programs.map((prog, index) => (
             <ProgramCard key={index} {...prog} />
           ))}
+          {/* Spacer for mobile scroll padding */}
+          <div className={styles.spacer}></div> 
         </div>
       </div>
     </section>

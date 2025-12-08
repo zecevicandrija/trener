@@ -11,7 +11,7 @@
   overflow: hidden;
 }
 
-/* --- BACKGROUND GRID --- */
+/* --- BACKGROUNDS --- */
 .gridBg {
   position: absolute;
   inset: 0;
@@ -21,6 +21,46 @@
     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
   pointer-events: none;
+  z-index: 1;
+}
+
+/* Motion Blobs - The "Alive" Background */
+.motionBgContainer {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.blob1, .blob2 {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(57, 255, 20, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.6;
+}
+
+.blob1 {
+    top: -200px;
+    left: -200px;
+    animation: blobFloat 20s infinite alternate linear;
+}
+
+.blob2 {
+    bottom: -200px;
+    right: -200px;
+    background: radial-gradient(circle, rgba(57, 255, 20, 0.05) 0%, transparent 70%);
+    animation: blobFloat 25s infinite alternate-reverse linear;
+}
+
+@keyframes blobFloat {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(100px, 50px) scale(1.1); }
+    66% { transform: translate(-50px, 100px) scale(0.9); }
+    100% { transform: translate(0, 0) scale(1); }
 }
 
 .container {
@@ -60,12 +100,16 @@
   -webkit-text-stroke: 1px var(--c-neon);
 }
 
+.mobileSwipeHint {
+    display: none; /* Hidden on desktop */
+}
+
 /* --- CARDS GRID --- */
 .cardsGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  align-items: center; /* Da bi srednja kartica mogla da bude veća */
+  align-items: center; 
 }
 
 /* --- INDIVIDUAL CARD --- */
@@ -73,16 +117,18 @@
   position: relative;
   background: var(--c-card-bg);
   backdrop-filter: blur(20px);
-  border-radius: 1px; /* Oštre ivice za brutalizam */
-  padding: 1px; /* Space for the border gradient */
+  border-radius: 1px;
+  padding: 1px; /* Space for the border */
   overflow: hidden;
   height: 100%;
   display: flex;
   flex-direction: column;
+  border: 1px solid rgba(255,255,255,0.05); /* Subtle border base */
+  transition: transform 0.3s;
 }
 
-/* Spotlight effect layer inside card */
-.spotlight {
+/* Spotlight layers */
+.spotlight, .spotlightBorder {
   pointer-events: none;
   position: absolute;
   inset: 0;
@@ -90,22 +136,14 @@
   transition: opacity 0.3s;
   z-index: 2;
 }
-
-.spotlightBorder {
-    pointer-events: none;
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 0.3s;
-    z-index: 1; /* Iza contenta, ali ispred bg */
-}
+.spotlightBorder { z-index: 1; }
 
 .card:hover .spotlight,
 .card:hover .spotlightBorder {
   opacity: 1;
 }
 
-/* Sadržaj unutar border-a */
+/* Content */
 .cardContent {
   background: #0a0a0a;
   height: 100%;
@@ -114,26 +152,19 @@
   z-index: 5;
   display: flex;
   flex-direction: column;
-  /* Clip-path za tech izgled (isečen donji desni ugao) */
-  clip-path: polygon(
-    0 0, 
-    100% 0, 
-    100% calc(100% - 30px), 
-    calc(100% - 30px) 100%, 
-    0 100%
-  );
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%);
 }
 
-/* --- RECOMMENDED CARD SPECIAL STYLES --- */
+/* --- RECOMMENDED CARD --- */
 .recommendedCard {
   transform: scale(1.05);
   border: 1px solid var(--c-neon);
-  box-shadow: 0 0 30px rgba(57, 255, 20, 0.1);
+  box-shadow: 0 0 40px rgba(57, 255, 20, 0.15);
   z-index: 10;
 }
 
 .recommendedCard .cardContent {
-    background: linear-gradient(180deg, #0f0f0f 0%, #0a0a0a 100%);
+    background: linear-gradient(180deg, #141414 0%, #0a0a0a 100%);
 }
 
 .badge {
@@ -146,12 +177,13 @@
   font-family: var(--f-body);
   font-weight: 800;
   font-size: 0.75rem;
-  padding: 0.3rem 1.5rem;
+  padding: 0.4rem 1.5rem;
   text-transform: uppercase;
   clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+  z-index: 20;
 }
 
-/* --- TYPOGRAPHY INSIDE CARD --- */
+/* --- TEXT STYLES --- */
 .cardHeader {
     text-align: center;
     margin-bottom: 2rem;
@@ -188,23 +220,15 @@
   line-height: 1;
 }
 
-.currency {
-  font-size: 2rem;
-  margin-top: 10px;
-}
+.currency { font-size: 2rem; margin-top: 10px; }
+.price { font-size: 6rem; font-weight: 700; text-shadow: 0 0 20px rgba(57, 255, 20, 0.3); }
 
-.price {
-  font-size: 6rem;
-  font-weight: 700;
-  text-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
-}
-
-/* --- FEATURES LIST --- */
+/* --- FEATURES --- */
 .featuresList {
   list-style: none;
   padding: 0;
   margin: 0 0 3rem 0;
-  flex-grow: 1; /* Gura dugme na dno */
+  flex-grow: 1;
 }
 
 .featureItem {
@@ -218,12 +242,9 @@
   font-weight: 500;
 }
 
-.checkIcon {
-  color: var(--c-neon);
-  min-width: 18px; /* Da se ne skuplja */
-}
+.checkIcon { color: var(--c-neon); min-width: 18px; }
 
-/* --- CTA BUTTON --- */
+/* --- BUTTON --- */
 .ctaButton {
   width: 100%;
   background: transparent;
@@ -243,6 +264,13 @@
   overflow: hidden;
 }
 
+.recommendedCard .ctaButton {
+    background: var(--c-neon);
+    color: #000;
+    font-weight: 700;
+    border: none;
+}
+
 .ctaButton:hover {
   background: var(--c-neon);
   color: #000;
@@ -250,21 +278,11 @@
   box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
 }
 
-.btnText {
-    position: relative;
-    z-index: 2;
-}
+.btnText { position: relative; z-index: 2; }
+.btnIcon { transition: transform 0.3s; z-index: 2; }
+.ctaButton:hover .btnIcon { transform: translateX(5px); }
 
-.btnIcon {
-    transition: transform 0.3s;
-    z-index: 2;
-}
-
-.ctaButton:hover .btnIcon {
-    transform: translateX(5px);
-}
-
-/* --- DECORATIVE DETAILS --- */
+/* --- DECO --- */
 .techLines {
     position: absolute;
     bottom: 20px;
@@ -284,33 +302,81 @@
     font-size: 2rem;
 }
 
-/* --- RESPONSIVE --- */
+/* =========================================
+   MOBILE RESPONSIVE IMPROVEMENTS
+   ========================================= */
 @media (max-width: 1024px) {
-  .cardsGrid {
-    grid-template-columns: 1fr; /* Jedna kolona na tabletu i mobilnom */
-    max-width: 500px;
-    margin: 0 auto;
-    gap: 3rem;
-  }
-
-  .recommendedCard {
-    transform: scale(1); /* Resetujemo skalu */
-    order: -1; /* Mentorstvo ide prvo na mobilnom jer je najvažnije! */
+  .section {
+    padding: 4rem 0;
   }
 
   .mainTitle {
-    font-size: 3.5rem;
+    font-size: 3rem;
   }
-}
 
-@media (max-width: 480px) {
-    .mainTitle {
-        font-size: 3rem;
-    }
-    .cardContent {
-        padding: 2rem 1.5rem;
-    }
-    .price {
-        font-size: 5rem;
-    }
+  /* Pokazivač da može da se svajpuje */
+  .mobileSwipeHint {
+    display: block;
+    color: #666;
+    font-family: var(--f-body);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    margin-top: 1rem;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0% {opacity: 0.5;} 50% {opacity: 1;} 100% {opacity: 0.5;} }
+
+  /* Horizontal Scroll / Carousel Layout */
+  .cardsGrid {
+    display: flex; /* Promena iz Grid u Flex */
+    overflow-x: auto; /* Omogućava scroll levo-desno */
+    scroll-snap-type: x mandatory; /* Kartica se "zalepi" na centar */
+    gap: 1.5rem;
+    padding-bottom: 2rem; /* Prostor za scrollbar/shadow */
+    padding-left: 1rem;
+    padding-right: 1rem;
+    
+    /* Sakrivanje scrollbara */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    
+    /* Proširivanje na punu širinu da bi padding radio lepo */
+    width: 100vw;
+    margin-left: -5vw; /* Kompenzacija za container marginu */
+    padding-left: 5vw; /* Centriranje prve kartice */
+    padding-right: 5vw;
+  }
+  
+  .cardsGrid::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Card Sizing on Mobile */
+  .card {
+    min-width: 85vw; /* Kartica zauzima 85% širine ekrana */
+    scroll-snap-align: center; /* Centrira se kad staneš sa skrolom */
+    height: auto;
+    min-height: 550px;
+  }
+
+  .spacer {
+      min-width: 20px;
+  }
+
+  /* Poseban stil za Recommended na mobilnom da se ističe bez hovera */
+  .recommendedCard {
+    transform: scale(1);
+    border: 1px solid var(--c-neon);
+    box-shadow: 0 0 20px rgba(57, 255, 20, 0.1);
+    /* Na mobilnom, ako želimo da bude prva, možemo koristiti order */
+    order: -1; 
+  }
+  
+  .cardTitle {
+      font-size: 3rem;
+  }
+  
+  .price {
+      font-size: 5rem;
+  }
 }
