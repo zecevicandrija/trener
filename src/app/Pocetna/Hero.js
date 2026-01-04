@@ -6,7 +6,7 @@ import { ArrowRight, Activity, Zap, ShieldCheck } from 'lucide-react';
 
 export default function Hero() {
   const containerRef = useRef(null);
-  
+
   // --- SCROLL ANIMATION HOOKS ---
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, 200]); // Pozadina ide sporije
@@ -24,12 +24,12 @@ export default function Hero() {
   };
 
   return (
-    <section 
-      ref={containerRef} 
-      className={styles.heroSection} 
+    <section
+      ref={containerRef}
+      className={styles.heroSection}
       onMouseMove={handleMouseMove}
     >
-      
+
       {/* --- LEVEL 1: DYNAMIC BACKGROUND --- */}
       <motion.div style={{ y: y1, scale }} className={styles.videoContainer}>
         <div className={styles.overlayGradient}></div>
@@ -37,99 +37,99 @@ export default function Hero() {
         <div className={styles.noise}></div>
         {/* Placeholder video - zameniti svojim mp4 fajlom */}
         <video autoPlay loop muted playsInline className={styles.bgVideo}>
-           <source src="https://www.pexels.com/download/video/4761818/" type="video/mp4" />
+          <source src="https://www.pexels.com/download/video/4761818/" type="video/mp4" />
         </video>
       </motion.div>
 
       {/* --- LEVEL 2: DECORATIVE HUD ELEMENTS (Technical feel) --- */}
       <div className={styles.hudLayer}>
         <div className={styles.hudTopLeft}>
-            <span>Akcija</span>
-            <span>Mentorstvo 50%</span>
+          <span>PROMO</span>
+          <span>50% OFF MENTORSHIP</span>
         </div>
-        
+
       </div>
 
       {/* --- LEVEL 3: MAIN CONTENT --- */}
       <div className={styles.contentContainer}>
-        
+
         {/* LEBDEĆE KARTICE (FLOATING STATS) - Samo na desktopu vidljive lepo */}
-        <motion.div 
-            className={styles.floatingCard} 
-            style={{ x: mousePosition.x * -20, y: mousePosition.y * -20 }}
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1 }}
+        <motion.div
+          className={styles.floatingCard}
+          style={{ x: mousePosition.x * -20, y: mousePosition.y * -20 }}
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1 }}
         >
-            <Zap className={styles.iconNeon} />
-            <div>
-                <h4>EKSPLOZIVNOST</h4>
-                <p>Optimizacija snage</p>
-            </div>
+          <Zap className={styles.iconNeon} />
+          <div>
+            <h4>EXPLOSIVENESS</h4>
+            <p>Power optimization</p>
+          </div>
         </motion.div>
 
-        <motion.div 
-            className={styles.floatingCardRight} 
-            style={{ x: mousePosition.x * 30, y: mousePosition.y * 30 }}
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.2 }}
+        <motion.div
+          className={styles.floatingCardRight}
+          style={{ x: mousePosition.x * 30, y: mousePosition.y * 30 }}
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1.2 }}
         >
-            <Activity className={styles.iconNeon} />
-            <div>
-                <h4>METABOLIZAM</h4>
-                <p>Maksimalno sagorevanje</p>
-            </div>
+          <Activity className={styles.iconNeon} />
+          <div>
+            <h4>METABOLISM</h4>
+            <p>Maximum burning</p>
+          </div>
         </motion.div>
 
 
         {/* GLAVNI TEKST */}
         <motion.div style={{ y: y2, opacity }} className={styles.textWrapper}>
-          
-          <motion.div 
-            initial={{ width: 0 }} 
-            animate={{ width: "100px" }} 
+
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: "100px" }}
             className={styles.separatorLine}
           ></motion.div>
-          
-          <motion.h2 
+
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className={styles.subtitle}
           >
-            NEMA KOMPROMISA // SAMO REZULTATI
+            NO COMPROMISES // ONLY RESULTS
           </motion.h2>
 
           <div className={styles.titleContainer}>
-            <motion.h1 
-                initial={{ y: 100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, ease: "circOut" }}
-                className={styles.titleOutline}
+            <motion.h1
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: "circOut" }}
+              className={styles.titleOutline}
             >
-                TRANSFORMIŠI
+              TRANSFORM
             </motion.h1>
-            <motion.h1 
-                initial={{ y: 100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.2, ease: "circOut" }}
-                className={styles.titleFilled}
+            <motion.h1
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "circOut" }}
+              className={styles.titleFilled}
             >
-                SVOJU REALNOST
+              YOUR REALITY
             </motion.h1>
           </div>
 
-          <motion.p 
+          <motion.p
             className={styles.description}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            Premium coaching sistem dizajniran za elitu. 
-            Kombinacija nauke, brutalnog treninga i nutricionizma.
+            Premium coaching system designed for the elite.
+            A combination of science, brutal training, and nutrition.
           </motion.p>
 
-          <motion.div 
+          <motion.div
             className={styles.ctaGroup}
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -137,14 +137,14 @@ export default function Hero() {
           >
             <button className={styles.primaryBtn}>
               <span className={styles.btnContent}>
-                ZAPOČNI ODMAH <ArrowRight className={styles.btnIcon} />
+                START NOW <ArrowRight className={styles.btnIcon} />
               </span>
               <div className={styles.btnGlitch}></div>
             </button>
-            
+
             <button className={styles.secondaryBtn}>
-                <ShieldCheck size={18} style={{marginRight: 8}}/> 
-                GARANCIJA USPEHA
+              <ShieldCheck size={18} style={{ marginRight: 8 }} />
+              SUCCESS GUARANTEE
             </button>
           </motion.div>
 
@@ -154,7 +154,7 @@ export default function Hero() {
       {/* --- LEVEL 4: INFINITE SCROLL TICKER BOTTOM --- */}
       <div className={styles.tickerWrapper}>
         <div className={styles.tickerContent}>
-             <span>SNAGA</span> • <span>IZDRŽLJIVOST</span> • <span>DISCIPLINA</span> • <span>FOKUS</span> • <span>SNAGA</span> • <span>IZDRŽLJIVOST</span> • <span>DISCIPLINA</span> • <span>FOKUS</span> •
+          <span>STRENGTH</span> • <span>ENDURANCE</span> • <span>DISCIPLINE</span> • <span>FOCUS</span> • <span>STRENGTH</span> • <span>ENDURANCE</span> • <span>DISCIPLINE</span> • <span>FOCUS</span> •
         </div>
       </div>
     </section>

@@ -15,7 +15,7 @@ const ProgramCard = ({ title, subtitle, price, features, recommended, delay }) =
   }
 
   return (
-    <motion.div 
+    <motion.div
       className={`${styles.card} ${recommended ? styles.recommendedCard : ''}`}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -36,7 +36,7 @@ const ProgramCard = ({ title, subtitle, price, features, recommended, delay }) =
           `,
         }}
       />
-      
+
       <motion.div
         className={styles.spotlightBorder}
         style={{
@@ -51,8 +51,8 @@ const ProgramCard = ({ title, subtitle, price, features, recommended, delay }) =
       />
 
       <div className={styles.cardContent}>
-        {recommended && <div className={styles.badge}>NAJTRAŽENIJE</div>}
-        
+        {recommended && <div className={styles.badge}>MOST POPULAR</div>}
+
         <div className={styles.cardHeader}>
           <h3 className={styles.cardTitle}>{title}</h3>
           <p className={styles.cardSubtitle}>{subtitle}</p>
@@ -73,7 +73,7 @@ const ProgramCard = ({ title, subtitle, price, features, recommended, delay }) =
         </ul>
 
         <button className={styles.ctaButton}>
-          <span className={styles.btnText}>ODABERI PROTOKOL</span>
+          <span className={styles.btnText}>CHOOSE PROTOCOL</span>
           <ArrowRight className={styles.btnIcon} size={20} />
         </button>
 
@@ -88,43 +88,43 @@ export default function Programi() {
   const programs = [
     {
       title: "BASIC",
-      subtitle: "Plan Treninga",
+      subtitle: "Workout Plan",
       price: "49",
       features: [
-        "4-Split Brutalni Trening",
-        "Video Demonstracije Vežbi",
-        "Progressive Overload Sistem",
-        "PDF Vodič za Zagrevanje",
-        "Podrška putem Email-a"
+        "4-Split Brutal Workout",
+        "Exercise Video Demonstrations",
+        "Progressive Overload System",
+        "PDF Warm-up Guide",
+        "Email Support"
       ],
       recommended: false,
       delay: 0.1
     },
     {
-      title: "MENTORSTVO",
-      subtitle: "1 na 1",
+      title: "MENTORSHIP",
+      subtitle: "1 on 1",
       price: "199",
       features: [
-        "Personalizovan Plan Treninga",
-        "Keto/Carb-Cycle Plan Ishrane",
-        "24/7 WhatsApp Podrška",
-        "Nedeljni Check-in Pozivi",
-        "Korekcija Forme (Video)",
-        "Suplementacija Vodič"
+        "Personalized Workout Plan",
+        "Keto/Carb-Cycle Nutrition Plan",
+        "24/7 WhatsApp Support",
+        "Weekly Check-in Calls",
+        "Form Correction (Video)",
+        "Supplementation Guide"
       ],
-      recommended: true, 
+      recommended: true,
       delay: 0.2
     },
     {
       title: "PREMIUM",
-      subtitle: "Plan Ishrane",
+      subtitle: "Nutrition Plan",
       price: "59",
       features: [
-        "Makro & Kalorijski Proračun",
-        "70+ Recepta za Masu/Definiciju",
-        "Lista za Kupovinu",
-        "Vodič za Cheat Meals",
-        "Meal Prep Strategije"
+        "Macro & Calorie Calculation",
+        "70+ Recipes for Bulk/Cut",
+        "Shopping List",
+        "Cheat Meals Guide",
+        "Meal Prep Strategies"
       ],
       recommended: false,
       delay: 0.3
@@ -136,32 +136,32 @@ export default function Programi() {
       {/* Dynamic Background */}
       <div className={styles.gridBg}></div>
       <div className={styles.motionBgContainer}>
-         <div className={styles.blob1}></div>
-         <div className={styles.blob2}></div>
+        <div className={styles.blob1}></div>
+        <div className={styles.blob2}></div>
       </div>
-      
+
       <div className={styles.container}>
         <div className={styles.header}>
-          <motion.p 
+          <motion.p
             className={styles.topTag}
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            SISTEM // IZBOR
+            SYSTEM // CHOICE
           </motion.p>
-          <motion.h2 
+          <motion.h2
             className={styles.mainTitle}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            TVOJE ORUŽJE <br />
-            <span className={styles.highlight}>ZA USPEH</span>
+            YOUR WEAPON <br />
+            <span className={styles.highlight}>FOR SUCCESS</span>
           </motion.h2>
-          
+
           {/* Mobile Hint text */}
-          <p className={styles.mobileSwipeHint}>&larr; PREVUCI ZA VIŠE &rarr;</p>
+          <p className={styles.mobileSwipeHint}>&larr; SWIPE FOR MORE &rarr;</p>
         </div>
 
         <div className={styles.cardsGrid}>
@@ -169,7 +169,7 @@ export default function Programi() {
             <ProgramCard key={index} {...prog} />
           ))}
           {/* Spacer for mobile scroll padding */}
-          <div className={styles.spacer}></div> 
+          <div className={styles.spacer}></div>
         </div>
       </div>
     </section>

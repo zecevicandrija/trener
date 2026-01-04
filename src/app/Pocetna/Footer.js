@@ -13,29 +13,29 @@ export default function Footer() {
       <div className={styles.bigBgText}>LEGACY</div>
 
       <div className={styles.container}>
-        
+
         {/* --- PRE-FOOTER CTA SECTION --- */}
         <div className={styles.ctaSection}>
           <div className={styles.ctaText}>
-            <h2>JOŠ UVEK ČEKAŠ?</h2>
-            <p>Sutra je dan kada gubitnici počinju. Ti počni danas.</p>
+            <h2>STILL WAITING?</h2>
+            <p>Tomorrow is the day when losers start. You start today.</p>
           </div>
           <button className={styles.ctaButton}>
-            PRIJAVI SE<ArrowUpRight className={styles.btnIcon} />
+            SIGN UP<ArrowUpRight className={styles.btnIcon} />
           </button>
         </div>
 
         {/* --- MAIN FOOTER CONTENT --- */}
         <div className={styles.mainContent}>
-          
+
           {/* COLUMN 1: BRAND */}
           <div className={styles.colBrand}>
             <a href="#" className={styles.logo}>
-              Ime<span className={styles.neon}>Prezime</span>
+              David<span className={styles.neon}>Knezevic</span>
             </a>
             <p className={styles.missionText}>
-              Premium online coaching sistem fokusiran na radikalnu transformaciju tela i uma. 
-              Nema prečica. Samo disciplina i nauka.
+              Premium online coaching system focused on radical transformation of body and mind.
+              No shortcuts. Only discipline and science.
             </p>
             <div className={styles.socials}>
               <a href="#" className={styles.socialIcon}><Instagram size={24} /></a>
@@ -46,12 +46,12 @@ export default function Footer() {
 
           {/* COLUMN 2: LINKS */}
           <div className={styles.colLinks}>
-            <h4 className={styles.colTitle}>NAVIGACIJA</h4>
+            <h4 className={styles.colTitle}>NAVIGATION</h4>
             <ul className={styles.linkList}>
-              <li><a href="#home">Početna</a></li>
-              <li><a href="#program">Programi</a></li>
-              <li><a href="#transformations">Transformacije</a></li>
-              <li><a href="#contact">Kontakt</a></li>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#program">Programs</a></li>
+              <li><a href="#transformations">Transformations</a></li>
+              <li><a href="#contact">Contact</a></li>
             </ul>
           </div>
 
@@ -69,11 +69,11 @@ export default function Footer() {
               </li>
               <li>
                 <MapPin className={styles.iconSmall} size={18} />
-                <span>Beograd, Srbija</span>
+                <span>Belgrade, Serbia</span>
               </li>
               <li className={styles.trustBadge}>
-                <ShieldCheck className={styles.iconSmall} size={18} color="#39FF14"/>
-                <span>100% Sertifikovan Trener</span>
+                <ShieldCheck className={styles.iconSmall} size={18} color="#39FF14" />
+                <span>100% Certified Trainer</span>
               </li>
             </ul>
           </div>
@@ -83,18 +83,18 @@ export default function Footer() {
         {/* --- BOTTOM BAR --- */}
         <div className={styles.bottomBar}>
           <div className={styles.copyright}>
-            &copy; {currentYear} IME PREZIME. SVA PRAVA ZADRŽANA.
+            &copy; {currentYear} DAVID KNEZEVIC. ALL RIGHTS RESERVED.
           </div>
-          
+
           {/* <div className={styles.systemStatus}>
             <span className={styles.statusDot}></span>
             SYSTEM: ONLINE
           </div> */}
 
           <div className={styles.legalLinks}>
-            <a href="#">Privatnost</a>
+            <a href="#">Privacy</a>
             <span className={styles.divider}>/</span>
-            <a href="#">Uslovi</a>
+            <a href="#">Terms</a>
           </div>
         </div>
 

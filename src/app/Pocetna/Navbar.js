@@ -27,8 +27,8 @@ export default function Navbar() {
 
   const menuVariants = {
     closed: { opacity: 0, x: "100%" },
-    open: { 
-      opacity: 1, 
+    open: {
+      opacity: 1,
       x: 0,
       transition: { staggerChildren: 0.1, delayChildren: 0.2, duration: 0.4, ease: "circOut" }
     }
@@ -41,7 +41,7 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav 
+      <motion.nav
         className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -50,12 +50,12 @@ export default function Navbar() {
         <div className={styles.container}>
           <div className={styles.logoContainer}>
             <a href="#" className={styles.logo}>
-              GYM<span className={styles.logoHighlight}>BRUTAL</span>
+              DAVID<span className={styles.logoHighlight}>KNEZEVIC</span>
             </a>
           </div>
 
           <div className={styles.desktopLinks}>
-            {['Početna', 'Programi', 'Transformacije', 'O Meni'].map((item, i) => (
+            {['Home', 'Programs', 'Transformations', 'About Me'].map((item, i) => (
               <a key={i} href={`#${item.toLowerCase()}`} className={styles.navLink}>
                 <span className={styles.linkText}>{item}</span>
                 <span className={styles.linkUnderline}></span>
@@ -65,7 +65,7 @@ export default function Navbar() {
 
           <div className={styles.ctaContainer}>
             <button className={styles.navButton}>
-              Pridruži se
+              Join Now
             </button>
           </div>
 
@@ -97,7 +97,7 @@ export default function Navbar() {
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             className={styles.mobileMenu}
             initial="closed"
             animate="open"
@@ -105,12 +105,12 @@ export default function Navbar() {
             variants={menuVariants}
           >
             <div className={styles.noiseOverlay}></div>
-            
+
             <div className={styles.mobileLinksContainer}>
-              {['Početna', 'Programi', 'Transformacije', 'O Meni', 'Kontakt'].map((item, i) => (
-                <motion.a 
-                  key={i} 
-                  href={`#${item.toLowerCase()}`} 
+              {['Home', 'Programs', 'Transformations', 'About Me', 'Contact'].map((item, i) => (
+                <motion.a
+                  key={i}
+                  href={`#${item.toLowerCase()}`}
                   className={styles.mobileLink}
                   variants={linkVariants}
                   onClick={() => setIsOpen(false)}
@@ -119,16 +119,16 @@ export default function Navbar() {
                   {item}
                 </motion.a>
               ))}
-              
-              <motion.button 
+
+              <motion.button
                 variants={linkVariants}
                 className={styles.mobileCta}
                 onClick={() => setIsOpen(false)}
               >
-                ZAPOČNI ODMAH <ArrowRight size={24} />
+                START NOW <ArrowRight size={24} />
               </motion.button>
             </div>
-            
+
             <div className={styles.menuBackgroundDeco}></div>
           </motion.div>
         )}

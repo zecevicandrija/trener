@@ -31,37 +31,37 @@ const Counter = ({ value, suffix = "" }) => {
 
 // --- PODACI ---
 const statsData = [
-  { 
-    id: 1, 
-    value: 500, 
-    suffix: "+", 
-    label: "TRANSFORMACIJA", 
-    desc: "Uspešno završenih protokola",
-    icon: Users 
+  {
+    id: 1,
+    value: 500,
+    suffix: "+",
+    label: "TRANSFORMATIONS",
+    desc: "Successfully completed protocols",
+    icon: Users
   },
-  { 
-    id: 2, 
-    value: 98, 
-    suffix: "%", 
-    label: "STOPA USPEHA", 
-    desc: "Klijenata koji su ostvarili cilj",
-    icon: Trophy 
+  {
+    id: 2,
+    value: 98,
+    suffix: "%",
+    label: "SUCCESS RATE",
+    desc: "Clients who achieved their goal",
+    icon: Trophy
   },
-  { 
-    id: 3, 
-    value: 12, 
-    suffix: "", 
-    label: "GODINA ISKUSTVA", 
-    desc: "Brutalnog rada na terenu",
-    icon: Timer 
+  {
+    id: 3,
+    value: 12,
+    suffix: "",
+    label: "YEARS OF EXPERIENCE",
+    desc: "Brutal field work",
+    icon: Timer
   },
-  { 
-    id: 4, 
-    value: 100, 
-    suffix: "kg",
-    label: "NA BENCU", 
-    desc: "Levom rukom",
-    icon: Dumbbell 
+  {
+    id: 4,
+    value: 1000,
+    suffix: "+",
+    label: "CUSTOM PLANS",
+    desc: "Tailored to your unique goals",
+    icon: Dumbbell
   },
 ];
 
@@ -69,20 +69,20 @@ export default function Stats() {
   return (
     <section className={styles.statsSection}>
       {/* Pozadinski dekorativni tekst */}
-      <div className={styles.bgText}>DOMINACIJA</div>
-      
+      <div className={styles.bgText}>DOMINATION</div>
+
       {/* Mreža u pozadini */}
       <div className={styles.gridBackground}></div>
 
       <div className={styles.container}>
         <div className={styles.header}>
-            <h3 className={styles.subHeader}>BROJKE NE LAŽU</h3>
-            <div className={styles.line}></div>
+          <h3 className={styles.subHeader}>NUMBERS DON'T LIE</h3>
+          <div className={styles.line}></div>
         </div>
 
         <div className={styles.statsGrid}>
           {statsData.map((stat, index) => (
-            <motion.div 
+            <motion.div
               key={stat.id}
               className={styles.statCard}
               initial={{ opacity: 0, y: 50 }}
@@ -101,10 +101,10 @@ export default function Stats() {
               <div className={styles.numberWrapper}>
                 <Counter value={stat.value} suffix={stat.suffix} />
               </div>
-              
+
               <h4 className={styles.label}>{stat.label}</h4>
               <p className={styles.desc}>{stat.desc}</p>
-              
+
               {/* Hover efekat skenera */}
               <div className={styles.scannerLine}></div>
             </motion.div>
